@@ -5,7 +5,7 @@ class ProjectList extends Component {
     const { projects } = this.props;
     return (
       <div>
-        {projects.map(project => <ProjectListItem project={project} />)}
+        {projects.map(project => <ProjectListItem key={project.id} project={project} />)}
       </div>
     );
   }
