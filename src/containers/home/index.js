@@ -3,6 +3,9 @@ import { push } from "react-router-redux";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getAllItems } from "../../actions/items-actions";
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
 
 class Home extends Component {
   componentDidMount() {
@@ -11,10 +14,28 @@ class Home extends Component {
 
   render() {
     const { items, changePage } = this.props;
+
+    BigCalendar.setLocalizer(
+      BigCalendar.momentLocalizer(moment)
+    );
+
     return (
       <div>
         <h1>Home</h1>
         <p>Count: {items.length}</p>
+
+        <BigCalendar
+          selectable
+          events={[]}
+          defaultView='week'
+          scrollToTime={new Date()}
+          defaultDate={new Date()}
+          onSelectSlot={(slotInfo) => alert(
+            `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
+            `\nend: ${slotInfo.end.toLocaleString()}` +
+            `\naction: ${slotInfo.action}`
+          )}
+        />
 
         <p>
           <button onClick={() => changePage()}>

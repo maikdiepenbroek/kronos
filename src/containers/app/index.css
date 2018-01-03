@@ -1,0 +1,15 @@
+header {
+    border-bottom: 1px solid lightgray;
+}
+
+header a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-right: 1px solid lightgray;
+    color: black;
+}
+
+header a:hover {
+    background: lightgray;
+}
