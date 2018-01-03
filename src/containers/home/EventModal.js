@@ -2,15 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Modal } from 'react-bootstrap'
 import { connectModal } from 'redux-modal'
+import Datetime from 'react-datetime';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+import 'react-datetime/css/react-datetime.css'
 
 class ModalContent extends Component {
     static propTypes = {
         handleHide: PropTypes.func.isRequired,
-        slotInfo: PropTypes.object.isRequired,
+        modalData: PropTypes.object.isRequired,
     };
 
     render() {
-        const { show, handleHide, slotInfo } = this.props
+        const { show, handleHide, modalData } = this.props
 
         return (
             <Modal show={show}>
@@ -19,8 +23,18 @@ class ModalContent extends Component {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>Start: {slotInfo.start.toLocaleString()}</p>
-                    <p>End: {slotInfo.end.toLocaleString()}</p>
+                    <p>Start:</p>
+                    <Datetime value={modalData.slotInfo.start} />
+                    <p>End:</p>
+                    <Datetime value={modalData.slotInfo.end} />
+                    <p>Project:</p>
+                    <Select
+                        name="project"
+                        onChange={this.handleChange}
+                        valueKey="id"
+                        labelKey="name"
+                        options={modalData.projects}
+                    />
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -34,8 +48,10 @@ class ModalContent extends Component {
 
 export default class EventModal extends Component {
     render() {
-        const { name, slotInfo } = this.props
-        const WrappedModal = connectModal({ name, slotInfo })(ModalContent)
+        const { name, modalData } = this.props
+        const WrappedModal = connectModal({ name, modalData })(ModalContent)
         return <WrappedModal />
     }
 }
+
+
