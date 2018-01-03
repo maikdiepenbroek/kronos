@@ -5,11 +5,17 @@ import { getAllItems } from "../../actions/items-actions";
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
+import DynamicModal from './DynamicModal';
+import { show } from 'redux-modal'
 
 class Home extends Component {
   componentDidMount() {
     this.props.getAllItems();
   }
+
+  handleOpen = (name, slotInfo) => {
+    this.props.show(name, slotInfo)
+  };
 
   render() {
     const { items, changePage } = this.props;
@@ -28,12 +34,10 @@ class Home extends Component {
           defaultView='week'
           scrollToTime={new Date()}
           defaultDate={new Date()}
-          onSelectSlot={(slotInfo) => alert(
-            `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-            `\nend: ${slotInfo.end.toLocaleString()}` +
-            `\naction: ${slotInfo.action}`
-          )}
+          onSelectSlot={(slotInfo) => this.handleOpen('event', {slotInfo})}
         />
+
+        <DynamicModal name="event" />
       </div>
     );
   }
@@ -46,7 +50,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getAllItems
+      getAllItems,
+      show
     },
     dispatch
   );
