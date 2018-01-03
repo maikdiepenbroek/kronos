@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import DynamicModal from './DynamicModal';
+import EventModal from './EventModal';
 import { show } from 'redux-modal'
 
 class Home extends Component {
@@ -33,7 +33,7 @@ class Home extends Component {
           onSelectSlot={(slotInfo) => this.handleOpen('event', {slotInfo})}
         />
 
-        <DynamicModal name="event" />
+        <EventModal name="event" />
       </div>
     );
   }

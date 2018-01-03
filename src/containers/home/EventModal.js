@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Button, Modal } from 'react-bootstrap'
 import { connectModal } from 'redux-modal'
 
-class EventModal extends Component {
+class ModalContent extends Component {
     static propTypes = {
         handleHide: PropTypes.func.isRequired,
         slotInfo: PropTypes.object.isRequired,
@@ -32,10 +32,10 @@ class EventModal extends Component {
     }
 }
 
-export default class DynamicModal extends Component {
+export default class EventModal extends Component {
     render() {
         const { name, slotInfo } = this.props
-        const WrappedMyModal = connectModal({ name, slotInfo })(EventModal)
-        return <WrappedMyModal />
+        const WrappedModal = connectModal({ name, slotInfo })(ModalContent)
+        return <WrappedModal />
     }
 }
