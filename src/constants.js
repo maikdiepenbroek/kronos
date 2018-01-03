@@ -1,0 +1,1 @@
+export const UPDATE_ALL_ITEMS = 'UPDATE_ALL_ITEMS';
