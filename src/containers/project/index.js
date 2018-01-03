@@ -23,11 +23,6 @@ const mapStateToProps = state => ({
   projects: state.projects
 });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      getAllProjects
-    },
-    dispatch
-  );
+  bindActionCreators({ getAllProjects }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project);

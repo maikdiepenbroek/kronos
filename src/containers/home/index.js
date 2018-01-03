@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getAllItems } from "../../actions/items-actions";
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
@@ -10,7 +9,6 @@ import { show } from 'redux-modal'
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getAllItems();
   }
 
   handleOpen = (name, slotInfo) => {
@@ -18,8 +16,6 @@ class Home extends Component {
   };
 
   render() {
-    const { items, changePage } = this.props;
-
     BigCalendar.setLocalizer(
       BigCalendar.momentLocalizer(moment)
     );
@@ -43,14 +39,11 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  items: state.items
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getAllItems,
       show
     },
     dispatch

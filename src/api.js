@@ -3,7 +3,7 @@ export default {
     return await (await fetch("https://uinames.com/api/?amount=50")).json();
   },
   async getAllProjects() {
-    return [
+    return await Promise.resolve([
       {
         id: "82d3f2b9-2c97-41c2-9b54-3b30dc77c2d3",
         name: "Kronos"
@@ -16,6 +16,6 @@ export default {
         id: "9d3915a5-130d-43e5-a723-5dfc256fa102",
         name: "Zeus"
       }
-    ];
+    ]);
   }
 };
