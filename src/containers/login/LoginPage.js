@@ -1,29 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import GoogleButton from 'react-google-button';
+import { push } from 'react-router-redux';
+import './login.css';
 
 export const LoginPage = ({ firebase, auth }) => (
-  <div className="">
+  <div className="login">
+    <h2>Auth</h2>
     <GoogleButton
       onClick={() => firebase.login({ provider: 'google', type: 'popup' })}
       disabled={!isEmpty(auth)}
     >
     </GoogleButton>
-
-    <div>
-      <h2>Auth</h2>
-      {isLoaded(auth) && !isEmpty(auth)? (
-        <div>
-          <span>Logged in</span>
-          <button onClick={() => firebase.logout()}>Logout</button>
-        </div>
-      ): (
+    {isLoaded(auth) && !isEmpty(auth) ? (
+      <div>
+        <span>Logged in</span>
+        <p><Button bsStyle="danger" onClick={() => firebase.logout()}>Logout</Button></p>
+      </div>
+    ) : (
         <span>Please login</span>
       )}
-    </div>
   </div>
 );
 

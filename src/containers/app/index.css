@@ -13,3 +13,7 @@ header a {
 header a:hover {
     background: lightgray;
 }
+
+main {
+    padding: 0 20px;
+}

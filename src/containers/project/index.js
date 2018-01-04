@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import ProjectList from '../../components/ProjectList';
 import { bindActionCreators, compose } from 'redux';
 import { show } from 'redux-modal';
-import AddProjectModal from './AddProjectModal';
 import { firestoreConnect } from 'react-redux-firebase';
+import AddProjectModal from './AddProjectModal';
+import ProjectTable from '../../components/ProjectTable';
 
 class Project extends Component {
   openAddProjectModal = () => {
@@ -15,8 +16,8 @@ class Project extends Component {
     return (
       <div>
         <h1>Projects</h1>
-        <button onClick={this.openAddProjectModal}>Add project</button>
-        <ProjectList projects={projects} />
+        <ProjectTable projects={projects} />
+        <Button bsStyle="primary" onClick={this.openAddProjectModal}>Add project</Button>
         <AddProjectModal name='addProject' />
       </div>
     );

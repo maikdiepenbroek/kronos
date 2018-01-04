@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 import { firestoreConnect } from 'react-redux-firebase';
 
-class ProjectListItem extends Component {
+class ProjectTableRow extends Component {
   constructor(props) {
     super(props);
     this.removeProject = this.removeProject.bind(this);
@@ -14,11 +15,12 @@ class ProjectListItem extends Component {
   render() {
     const { project } = this.props;
     return (
-      <ul>
-        <li>Name: {project.name}</li>
-        <button onClick={() => this.removeProject(project.id)}>Remove project</button>
-      </ul>
+
+      <tr>
+        <td>{project.name}</td>
+        <td><Button onClick={() => this.removeProject(project.id)}>Remove project</Button></td>
+      </tr>
     );
   }
 }
-export default firestoreConnect(['projects'])(ProjectListItem);
+export default firestoreConnect(['projects'])(ProjectTableRow);
