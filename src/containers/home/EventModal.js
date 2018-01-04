@@ -64,7 +64,7 @@ class EventModal extends Component {
         if (this.isNewEvent()) {
             this.props.firestore.add('events', dataToSave);
         } else {
-            this.props.firestore.update('events', this.props.slotInfo.id, dataToSave);
+            this.props.firestore.update(`events/${this.props.slotInfo.id}`, dataToSave);
         }
         this.props.hide('event');
     }
