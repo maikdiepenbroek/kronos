@@ -47,7 +47,13 @@ class EventModal extends Component {
     }
 
     handleSave() {
-        this.props.firestore.add('events', { title: this.state.project.name, start: this.state.start.toDate(), end: this.state.end.toDate() });
+        this.props.firestore.add('events', {
+            title: this.state.project.name,
+            start: this.state.start.toDate(),
+            end: this.state.end.toDate(),
+            project: this.state.project,
+            km: this.state.km
+        });
         this.props.hide('event');
     }
 
