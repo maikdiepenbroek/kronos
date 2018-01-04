@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 import { connectModal, hide } from 'redux-modal';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { addNewProject } from '../../actions/projects-actions';
+import { bindActionCreators, compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class AddProjectModal extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class AddProjectModal extends Component {
   };
 
   handleSave() {
-    this.props.addNewProject(this.state.projectName);
+    this.props.firestore.add('projects', { name: this.state.projectName });
     this.props.hide('addProject');
   }
 
@@ -59,6 +59,11 @@ class AddProjectModal extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ hide, addNewProject }, dispatch);
-AddProjectModal = connect(() => ({}), mapDispatchToProps)(AddProjectModal);
-export default connectModal({ name: 'addProject' })(AddProjectModal);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ hide }, dispatch);
+
+export default compose(
+  firestoreConnect(['projects']),
+  connectModal({ name: 'addProject' }),
+  connect(() => ({}), mapDispatchToProps)
+)(AddProjectModal);

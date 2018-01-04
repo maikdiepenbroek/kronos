@@ -6,7 +6,7 @@ import rootReducer from '../reducers'
 import initialState from './initial-state';
 import { reduxFirestore } from 'redux-firestore';
 import firebase from 'firebase';
-import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase';
+import { reactReduxFirebase } from 'react-redux-firebase';
 import 'firebase/firestore';
 import { firebaseConfig, reduxFirebase } from '../config'
 
