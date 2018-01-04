@@ -1,3 +1,4 @@
+const uuidv4 = require('uuid/v4');
 export default {
   async getAllItems() {
     return await (await fetch("https://uinames.com/api/?amount=50")).json();
@@ -17,5 +18,11 @@ export default {
         name: "Zeus"
       }
     ]);
+  },
+  async addNewProject(projectName) {
+    return await Promise.resolve({
+      id: uuidv4(),
+      name: 'projectName'
+    })
   }
 };
