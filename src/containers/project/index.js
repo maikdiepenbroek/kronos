@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProjectList from '../../components/ProjectList';
-import { getAllProjects } from '../../actions/projects-actions';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { show } from 'redux-modal';
 import AddProjectModal from './AddProjectModal';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class Project extends Component {
-  componentDidMount() {
-    this.props.getAllProjects();
-  }
-
   openAddProjectModal = () => {
     this.props.show('addProject');
   };
@@ -28,9 +24,12 @@ class Project extends Component {
 }
 
 const mapStateToProps = state => ({
-  projects: state.projects
+  projects: state.firestore.ordered.projects || []
 });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getAllProjects, show }, dispatch);
+  bindActionCreators({ show }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Project);
+export default compose(
+  firestoreConnect(['projects']),
+  connect(mapStateToProps, mapDispatchToProps)
+)(Project)
