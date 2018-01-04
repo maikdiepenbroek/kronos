@@ -27,11 +27,15 @@ const App = () => (
         </Navbar.Collapse>
       </Navbar>
     </header>
-    
-    <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={LoginPage} />
-      <Route exact path="/projects" component={Project} />
+
+    <main className="container">
+      <div className="row">
+        <div className="col-12">
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/projects" component={Project} />
+        </div>
+      </div>
     </main>
   </div>
 );
