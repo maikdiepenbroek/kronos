@@ -19,8 +19,8 @@ class EventModal extends Component {
             project: props.slotInfo.project,
             start: moment(props.slotInfo.start),
             end: moment(props.slotInfo.end),
-            km: (props.slotInfo.km !== undefined) ? props.slotInfo.km : 0,
-            notes: (props.slotInfo.notes !== undefined) ? props.slotInfo.notes : '',
+            km: props.slotInfo.km || 0,
+            notes: props.slotInfo.notes || '',
         };
         this.handleSave = this.handleSave.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
