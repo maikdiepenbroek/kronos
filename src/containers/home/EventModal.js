@@ -23,6 +23,8 @@ class EventModal extends Component {
         };
         this.handleProjectChange = this.handleProjectChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.isNewEvent = this.isNewEvent.bind(this);
     }
 
     static propTypes = {
@@ -47,20 +49,34 @@ class EventModal extends Component {
     }
 
     handleSave() {
-        this.props.firestore.add('events', {
+        const dataToSave = {
             title: this.state.project.name,
             start: this.state.start.toDate(),
             end: this.state.end.toDate(),
             project: this.state.project,
             km: this.state.km
-        });
+        };
+        if(this.isNewEvent()) {
+            this.props.firestore.add('events', dataToSave);
+        } else {
+            this.props.firestore.update('events', this.props.slotInfo.id, dataToSave);
+        }
         this.props.hide('event');
     }
 
+    handleDelete() {
+        this.props.firestore.deleteRef('events/' + this.props.slotInfo.id);
+        this.props.hide('event');
+    }
+
+    isNewEvent() {
+        return this.props.slotInfo.project === undefined;
+    }
+
     render() {
-        const { show, handleHide, projects, events } = this.props
+        const { show, handleHide, projects } = this.props
         const isFormValid = this.state.start.isBefore(this.state.end) && this.state.project !== '' && this.state.km >= 0;
-        const addOrEdit = (this.props.slotInfo.project !== undefined) ? 'Edit' : 'Add';
+        const addOrEdit = (this.isNewEvent()) ? 'Add' : 'Edit';
 
         return (
             <Modal show={show}>
@@ -103,6 +119,10 @@ class EventModal extends Component {
                 <Modal.Footer>
                     <Button onClick={handleHide}>Cancel</Button>
                     <Button bsStyle="primary" onClick={this.handleSave} disabled={!isFormValid}>Save</Button>
+
+                    <span className="pull-left">
+                        <Button bsStyle="danger" onClick={this.handleDelete} disabled={this.isNewEvent()}>Delete</Button>
+                    </span>
                 </Modal.Footer>
             </Modal>
         );

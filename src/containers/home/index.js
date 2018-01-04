@@ -22,7 +22,7 @@ class Home extends Component {
     BigCalendar.setLocalizer( 
       BigCalendar.momentLocalizer(moment)
     );
-    
+
     return (
       <div>
         <h1>Home</h1>
