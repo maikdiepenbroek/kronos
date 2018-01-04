@@ -5,7 +5,7 @@ import { connectModal, hide } from 'redux-modal';
 import Datetime from 'react-datetime';
 import Select from 'react-select';
 import moment from 'moment';
-import NumericInput from "react-numeric-input";
+import NumericInput from 'react-numeric-input';
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
