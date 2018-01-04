@@ -4,6 +4,12 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from '../reducers'
 import initialState from './initial-state';
+import { reduxFirestore } from 'redux-firestore';
+import firebase from 'firebase';
+import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase';
+import 'firebase/firestore';
+import { firebaseConfig, reduxFirebase } from '../config'
+
 export const history = createHistory();
 
 const enhancers = []
@@ -20,7 +26,12 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
+firebase.initializeApp(firebaseConfig);
+firebase.firestore();
+
 const composedEnhancers = compose(
+  reactReduxFirebase(firebase, reduxFirebase),
+  reduxFirestore(firebase),
   applyMiddleware(...middleware),
   ...enhancers
 )
