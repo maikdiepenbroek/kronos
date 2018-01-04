@@ -11,13 +11,11 @@ class Home extends Component {
   componentDidMount() {
   }
 
-  handleOpen = (name, modalData) => {
-    this.props.show(name, modalData)
+  handleOpen = (name, slotInfo) => {
+    this.props.show(name, slotInfo)
   };
 
   render() {
-    const { projects } = this.props;
-
     BigCalendar.setLocalizer( 
       BigCalendar.momentLocalizer(moment)
     );
@@ -32,7 +30,7 @@ class Home extends Component {
           defaultView='week'
           scrollToTime={new Date()}
           defaultDate={new Date()}
-          onSelectSlot={(slotInfo) => this.handleOpen('event', {modalData : {slotInfo, projects}})}
+          onSelectSlot={(slotInfo) => this.handleOpen('event', {slotInfo})}
         />
 
         <EventModal name="event" />
