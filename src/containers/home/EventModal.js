@@ -44,7 +44,7 @@ class ModalContent extends Component {
 
     render() {
         const { show, handleHide, modalData } = this.props
-        const isFormValid = this.state.start.isBefore(this.state.end) && this.state.projectId != '' && this.state.km >= 0;
+        const isFormValid = this.state.start.isBefore(this.state.end) && this.state.projectId !== '' && this.state.km >= 0;
 
         return (
             <Modal show={show}>
