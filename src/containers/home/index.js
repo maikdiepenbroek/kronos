@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import EventModal from './EventModal';
 import { show } from 'redux-modal'
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 class Home extends Component {
@@ -16,6 +17,8 @@ class Home extends Component {
   };
 
   render() {
+    const { events } = this.props;
+
     BigCalendar.setLocalizer( 
       BigCalendar.momentLocalizer(moment)
     );
@@ -26,7 +29,7 @@ class Home extends Component {
 
         <BigCalendar
           selectable
-          events={[]}
+          events={events}
           defaultView='week'
           scrollToTime={new Date()}
           defaultDate={new Date()}
@@ -40,15 +43,12 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  projects: state.projects
+  events: state.firestore.ordered.events || []
 });
-
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      show
-    },
-    dispatch
-  );
+  bindActionCreators({ show }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default compose(
+  firestoreConnect(['events']),
+  connect(mapStateToProps, mapDispatchToProps)
+)(Home)
