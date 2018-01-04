@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, FormControl, Modal } from 'react-bootstrap';
+import { FormGroup, Button, FormControl, Modal } from 'react-bootstrap';
 import { connectModal, hide } from 'redux-modal';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
@@ -39,12 +39,14 @@ class AddProjectModal extends Component {
         </Modal.Header>
 
         <Modal.Body>
-          <label>Project name</label>
-          <FormControl
-            value={this.state.projectName}
-            onChange={this.handleChange}
-            placeholder="Project name"
-          />
+          <FormGroup>
+            <label>Project name</label>
+            <FormControl
+              value={this.state.projectName}
+              onChange={this.handleChange}
+              placeholder="Project name"
+            />
+          </FormGroup>
         </Modal.Body>
 
         <Modal.Footer>

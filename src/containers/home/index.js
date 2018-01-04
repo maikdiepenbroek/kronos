@@ -34,6 +34,7 @@ class Home extends Component {
           scrollToTime={new Date()}
           defaultDate={new Date()}
           onSelectSlot={(slotInfo) => this.handleOpen('event', {slotInfo})}
+          onSelectEvent={(slotInfo) => this.handleOpen('event', {slotInfo})}
         />
 
         <EventModal name="event" />
