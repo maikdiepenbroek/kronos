@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import ProjectTableRow from "./ProjectTableRow";
 
 class ProjectTable extends Component {

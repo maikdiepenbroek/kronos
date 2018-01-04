@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import GoogleButton from 'react-google-button';
-import { push } from 'react-router-redux';
 import './login.css';
 
 export const LoginPage = ({ firebase, auth }) => (

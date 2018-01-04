@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import { Navbar, Nav, NavItem, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import Home from '../home';
 import LoginPage from '../login/LoginPage';
 import Project from '../project';
@@ -12,17 +13,23 @@ const App = () => (
       <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Kronos</a>
+            <Link to="/">Kronos</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem><Link to="/">Home</Link></NavItem>
-            <NavItem><Link to="/projects">Projects</Link></NavItem>
+            <LinkContainer to="/" exact={true}>
+              <NavItem>Home</NavItem>
+            </LinkContainer>
+            <LinkContainer to="/projects">
+              <NavItem>Projects</NavItem>
+            </LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavItem><Link to="/login">Login</Link></NavItem>
+            <LinkContainer to="/login">
+              <NavItem>Login</NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
