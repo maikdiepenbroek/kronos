@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, FormControl, Modal } from 'react-bootstrap';
 import { connectModal, hide } from 'redux-modal';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
@@ -40,8 +40,7 @@ class AddProjectModal extends Component {
 
         <Modal.Body>
           <label>Project name</label>
-          <input
-            type="text"
+          <FormControl
             value={this.state.projectName}
             onChange={this.handleChange}
             placeholder="Project name"
