@@ -70,7 +70,7 @@ class EventModal extends Component {
     }
 
     handleDelete() {
-        this.props.firestore.deleteRef('events/' + this.props.slotInfo.id);
+        this.props.firestore.deleteRef(`events/${this.props.slotInfo.id}`);
         this.props.hide('event');
     }
 
