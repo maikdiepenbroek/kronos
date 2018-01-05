@@ -4,6 +4,7 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Home from '../home';
 import LoginPage from '../login/LoginPage';
+import LoginMenuItem from '../login/LoginMenuItem';
 import Report from '../report';
 import Project from '../project';
 import './index.css';
@@ -31,9 +32,7 @@ const App = () => (
             </LinkContainer>
           </Nav>
           <Nav pullRight>
-            <LinkContainer to="/login">
-              <NavItem>Login</NavItem>
-            </LinkContainer>
+            <LoginMenuItem />
           </Nav>
         </Navbar.Collapse>
       </Navbar>
