@@ -54,6 +54,7 @@ class EventModal extends Component {
 
     handleSave() {
         const dataToSave = {
+            uid: this.props.uid,
             title: this.state.project.name,
             start: this.state.start.toDate(),
             end: this.state.end.toDate(),
@@ -148,7 +149,8 @@ class EventModal extends Component {
 }
 
 const mapStateToProps = state => ({
-    projects: state.firestore.ordered.projects || []
+    projects: state.firestore.ordered.projects || [],
+    uid: state.firebase.auth.uid,
 });
 
 const mapDispatchToProps = dispatch =>

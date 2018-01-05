@@ -5,6 +5,7 @@ import EventModal from './EventModal';
 import { show } from 'redux-modal'
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
+import { firebaseConnect } from 'react-redux-firebase';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 class Home extends Component {
@@ -60,6 +61,7 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   events: state.firestore.ordered.events || [],
+  uid: state.firebase.auth.uid,
 });
 
 const mapDispatchToProps = dispatch =>

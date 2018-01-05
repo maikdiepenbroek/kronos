@@ -10,7 +10,7 @@ class LoginMenuItem extends Component {
     const { displayName } = this.props;
     return (
       <LinkContainer to="/login">
-        <NavItem>{(displayName === undefined) ? 'Login' : displayName}</NavItem>
+        <NavItem>{displayName || 'Login'}</NavItem>
       </LinkContainer>
     );
   }
