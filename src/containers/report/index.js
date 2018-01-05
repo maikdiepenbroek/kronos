@@ -14,7 +14,7 @@ class Report extends Component {
     super(props);
     this.state = {
       project: '',
-      start: moment().set('day', 1),
+      start: moment().startOf('month'),
       end: moment().endOf('month'),
     }
     this.filteredEvents = this.filteredEvents.bind(this);
@@ -33,27 +33,26 @@ class Report extends Component {
   }
 
   filteredEvents() {
-    var events = [];
-    this.props.events.map(event => {
+    return this.props.events.filter(event => {
       if (moment(event.start).isAfter(this.state.start)
         && moment(event.start).isBefore(this.state.end)
         && (this.state.project === '' || this.state.project === null || event.project.id === this.state.project.id)) {
-        events.push(event);
+        return event;
       }
+      return false;
     });
-    return events;
   }
 
   calculateTotals() {
-    var totalMinutes = 0;
-    this.filteredEvents().map(event => {
+     var totalMinutes = this.filteredEvents().reduce((total, event) => {
       if (moment(event.start).isAfter(this.state.start)) {
         var start = moment(event.start, "HH:mm");
         var end = moment(event.end, "HH:mm");
         var minutes = end.diff(start, 'minutes');
-        totalMinutes += minutes;
+        return total + minutes;
       }
-    });
+      return total;
+    }, 0);
     return moment().hour(0).minute(totalMinutes).format("HH:mm");
   }
 
