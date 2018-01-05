@@ -9,7 +9,12 @@ import { firestoreConnect } from 'react-redux-firebase';
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 class Home extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      calendarView: 'week',
+      calendarDate: new Date()
+    }
   }
 
   handleOpen = (name, slotInfo) => {
@@ -19,7 +24,7 @@ class Home extends Component {
   render() {
     const { events } = this.props;
 
-    BigCalendar.setLocalizer( 
+    BigCalendar.setLocalizer(
       BigCalendar.momentLocalizer(moment)
     );
 
@@ -30,11 +35,22 @@ class Home extends Component {
         <BigCalendar
           selectable
           events={events}
-          defaultView='week'
-          scrollToTime={new Date()}
-          defaultDate={new Date()}
-          onSelectSlot={(slotInfo) => this.handleOpen('event', {slotInfo})}
-          onSelectEvent={(slotInfo) => this.handleOpen('event', {slotInfo})}
+          defaultView={this.state.calendarView}
+          step={15}
+          onView={(view) => {
+            this.setState({
+              calendarView: view
+            });
+          }}
+          onNavigate={(date) => {
+            this.setState({
+              calendarDate: date
+            });
+          }}
+          scrollToTime={this.state.calendarDate}
+          defaultDate={this.state.calendarDate}
+          onSelectSlot={(slotInfo) => this.handleOpen('event', { slotInfo })}
+          onSelectEvent={(slotInfo) => this.handleOpen('event', { slotInfo })}
         />
 
         <EventModal name="event" />

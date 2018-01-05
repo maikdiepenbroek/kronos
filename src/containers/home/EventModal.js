@@ -32,16 +32,16 @@ class EventModal extends Component {
         slotInfo: PropTypes.object.isRequired,
     };
 
-    handleProjectChange = (selectedOption) => {
-        this.setState({ project: selectedOption });
-    }
-
     handleStartChange = (moment) => {
         this.setState({ start: moment });
     }
 
     handleEndChange = (moment) => {
         this.setState({ end: moment });
+    }
+
+    handleProjectChange = (selectedOption) => {
+        this.setState({ project: selectedOption });
     }
 
     handleKmChange = (newKm) => {
@@ -94,6 +94,8 @@ class EventModal extends Component {
                         <ControlLabel>Start</ControlLabel>
                         <Datetime
                             value={this.state.start}
+                            dateFormat="DD-MM-YYYY"
+                            timeFormat="HH:mm:ss"
                             onChange={this.handleStartChange}
                         />
                     </FormGroup>
@@ -101,6 +103,8 @@ class EventModal extends Component {
                         <ControlLabel>End</ControlLabel>
                         <Datetime
                             value={this.state.end}
+                            dateFormat="DD-MM-YYYY"
+                            timeFormat="HH:mm:ss"
                             onChange={this.handleEndChange}
                         />
                     </FormGroup>

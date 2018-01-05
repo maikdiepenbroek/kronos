@@ -4,6 +4,7 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Home from '../home';
 import LoginPage from '../login/LoginPage';
+import Report from '../report';
 import Project from '../project';
 import './index.css';
 
@@ -21,6 +22,9 @@ const App = () => (
           <Nav>
             <LinkContainer to="/" exact={true}>
               <NavItem>Home</NavItem>
+            </LinkContainer>
+            <LinkContainer to="/reports">
+              <NavItem>Reports</NavItem>
             </LinkContainer>
             <LinkContainer to="/projects">
               <NavItem>Projects</NavItem>
@@ -40,6 +44,7 @@ const App = () => (
         <div className="col-12">
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/reports" component={Report} />
           <Route exact path="/projects" component={Project} />
         </div>
       </div>
