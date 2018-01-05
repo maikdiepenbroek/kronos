@@ -10,6 +10,8 @@ class ReportTableRow extends Component {
         <td>{event.project.name}</td>
         <td>{moment(event.start).format('DD-MM-YYYY')}</td>
         <td>{moment(event.start).format('HH:mm')} - {moment(event.end).format('HH:mm')}</td>
+        <td>{event.km} km</td>
+        <td>{event.notes}</td>
       </tr>
     );
   }

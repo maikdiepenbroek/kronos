@@ -13,6 +13,8 @@ class ReportTable extends Component {
               <th>Project</th>
               <th>Date</th>
               <th>From-To</th>
+              <th>Travel distance</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>
