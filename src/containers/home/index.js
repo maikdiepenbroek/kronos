@@ -22,7 +22,7 @@ class Home extends Component {
   };
 
   render() {
-    const { events } = this.props;
+    const { events, uid } = this.props;
 
     BigCalendar.setLocalizer(
       BigCalendar.momentLocalizer(moment)
@@ -53,7 +53,7 @@ class Home extends Component {
           onSelectEvent={(slotInfo) => this.handleOpen('event', { slotInfo })}
         />
 
-        <EventModal name="event" />
+        <EventModal uid={uid} name="event" />
       </div>
     );
   }

@@ -12,20 +12,21 @@ class Project extends Component {
     this.props.show('addProject');
   };
   render() {
-    const { projects } = this.props;
+    const { projects, uid } = this.props;
     return (
       <div>
         <h1>Projects</h1>
         <ProjectTable projects={projects} />
         <Button bsStyle="primary" onClick={this.openAddProjectModal}>Add project</Button>
-        <AddProjectModal name='addProject' />
+        <AddProjectModal uid={uid} name='addProject' />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  projects: state.firestore.ordered.projects || []
+  projects: state.firestore.ordered.projects || [],
+  uid: state.firebase.auth.uid,
 });
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ show }, dispatch);

@@ -150,7 +150,6 @@ class EventModal extends Component {
 
 const mapStateToProps = state => ({
     projects: state.firestore.ordered.projects || [],
-    uid: state.firebase.auth.uid,
 });
 
 const mapDispatchToProps = dispatch =>
