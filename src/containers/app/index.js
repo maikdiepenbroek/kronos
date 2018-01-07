@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Home from '../home';
@@ -41,10 +41,12 @@ const App = () => (
     <main className="container">
       <div className="row">
         <div className="col-12">
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/reports" component={Report} />
-          <Route exact path="/projects" component={Project} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/reports" component={Report} />
+            <Route path="/projects" component={Project} />
+          </Switch>
         </div>
       </div>
     </main>
