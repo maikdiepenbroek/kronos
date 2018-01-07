@@ -1,5 +1,5 @@
-#Kronos
-##Timesheet app
+# Kronos
+Timesheet app
 
-###Commands
+### Commands
 `npm start`
