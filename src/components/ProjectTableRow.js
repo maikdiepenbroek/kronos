@@ -15,10 +15,16 @@ class ProjectTableRow extends Component {
   render() {
     const { project } = this.props;
     return (
-
       <tr>
         <td>{project.name}</td>
-        <td><Button bsStyle="danger" onClick={() => this.removeProject(project.id)}>Remove project</Button></td>
+        <td>
+          <Button
+            bsStyle="danger"
+            onClick={() => this.removeProject(project.id)}
+          >
+            Remove project
+          </Button>
+        </td>
       </tr>
     );
   }

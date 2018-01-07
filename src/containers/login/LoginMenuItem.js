@@ -19,9 +19,8 @@ class LoginMenuItem extends Component {
 const mapStateToProps = state => ({
   displayName: state.firebase.auth.displayName
 });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ show }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ show }, dispatch);
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps)
-)(LoginMenuItem)
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  LoginMenuItem
+);

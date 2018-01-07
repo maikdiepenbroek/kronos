@@ -17,8 +17,10 @@ class Project extends Component {
       <div>
         <h1>Projects</h1>
         <ProjectTable projects={projects} />
-        <Button bsStyle="primary" onClick={this.openAddProjectModal}>Add project</Button>
-        <AddProjectModal uid={uid} name='addProject' />
+        <Button bsStyle="primary" onClick={this.openAddProjectModal}>
+          Add project
+        </Button>
+        <AddProjectModal uid={uid} name="addProject" />
       </div>
     );
   }
@@ -26,12 +28,11 @@ class Project extends Component {
 
 const mapStateToProps = state => ({
   projects: state.firestore.ordered.projects || [],
-  uid: state.firebase.auth.uid,
+  uid: state.firebase.auth.uid
 });
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ show }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ show }, dispatch);
 
 export default compose(
   firestoreConnect(['projects']),
   connect(mapStateToProps, mapDispatchToProps)
-)(Project)
+)(Project);

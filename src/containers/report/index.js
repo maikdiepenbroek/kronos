@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import moment from 'moment';
 import { Row, Col, Form, FormGroup, ControlLabel, Well } from 'react-bootstrap';
 import Datetime from 'react-datetime';
@@ -7,7 +7,7 @@ import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import ReportTable from './ReportTable';
-import 'react-big-calendar/lib/css/react-big-calendar.css'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 class Report extends Component {
   constructor(props) {
@@ -15,28 +15,32 @@ class Report extends Component {
     this.state = {
       project: '',
       start: moment().startOf('month'),
-      end: moment().endOf('month'),
-    }
+      end: moment().endOf('month')
+    };
     this.filteredEvents = this.filteredEvents.bind(this);
   }
 
-  handleStartChange = (moment) => {
+  handleStartChange = moment => {
     this.setState({ start: moment });
-  }
+  };
 
-  handleEndChange = (moment) => {
+  handleEndChange = moment => {
     this.setState({ end: moment });
-  }
+  };
 
-  handleProjectChange = (selectedOption) => {
+  handleProjectChange = selectedOption => {
     this.setState({ project: selectedOption });
-  }
+  };
 
   filteredEvents() {
     return this.props.events.filter(event => {
-      if (moment(event.start).isAfter(this.state.start)
-        && moment(event.start).isBefore(this.state.end)
-        && (this.state.project === '' || this.state.project === null || event.project.id === this.state.project.id)) {
+      if (
+        moment(event.start).isAfter(this.state.start) &&
+        moment(event.start).isBefore(this.state.end) &&
+        (this.state.project === '' ||
+          this.state.project === null ||
+          event.project.id === this.state.project.id)
+      ) {
         return event;
       }
       return false;
@@ -44,16 +48,19 @@ class Report extends Component {
   }
 
   calculateTotals() {
-     var totalMinutes = this.filteredEvents().reduce((total, event) => {
+    var totalMinutes = this.filteredEvents().reduce((total, event) => {
       if (moment(event.start).isAfter(this.state.start)) {
-        var start = moment(event.start, "HH:mm");
-        var end = moment(event.end, "HH:mm");
+        var start = moment(event.start, 'HH:mm');
+        var end = moment(event.end, 'HH:mm');
         var minutes = end.diff(start, 'minutes');
         return total + minutes;
       }
       return total;
     }, 0);
-    return moment().hour(0).minute(totalMinutes).format("HH:mm");
+    return moment()
+      .hour(0)
+      .minute(totalMinutes)
+      .format('HH:mm');
   }
 
   render() {
@@ -104,7 +111,10 @@ class Report extends Component {
           <Row>
             <Col xs={12}>
               <ReportTable events={this.filteredEvents()} />
-              <Well bsSize="small"><strong>Total hours in selection:</strong> {this.calculateTotals()}</Well>
+              <Well bsSize="small">
+                <strong>Total hours in selection:</strong>{' '}
+                {this.calculateTotals()}
+              </Well>
             </Col>
           </Row>
         </Form>
@@ -115,13 +125,12 @@ class Report extends Component {
 
 const mapStateToProps = state => ({
   events: state.firestore.ordered.events || [],
-  projects: state.firestore.ordered.projects || [],
+  projects: state.firestore.ordered.projects || []
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 export default compose(
   firestoreConnect(['events', 'projects']),
   connect(mapStateToProps, mapDispatchToProps)
-)(Report)
+)(Report);

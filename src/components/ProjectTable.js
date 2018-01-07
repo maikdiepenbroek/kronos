@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import ProjectTableRow from "./ProjectTableRow";
+import ProjectTableRow from './ProjectTableRow';
 
 class ProjectTable extends Component {
   render() {
@@ -15,7 +15,9 @@ class ProjectTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {projects.map(project => <ProjectTableRow key={project.id} project={project} />)}
+            {projects.map(project => (
+              <ProjectTableRow key={project.id} project={project} />
+            ))}
           </tbody>
         </Table>
       </div>

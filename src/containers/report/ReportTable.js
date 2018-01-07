@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
-import ReportTableRow from "./ReportTableRow";
+import ReportTableRow from './ReportTableRow';
 
 class ReportTable extends Component {
   render() {
@@ -18,7 +18,9 @@ class ReportTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {events.map(event => <ReportTableRow key={event.id} event={event} />)}
+            {events.map(event => (
+              <ReportTableRow key={event.id} event={event} />
+            ))}
           </tbody>
         </Table>
       </div>

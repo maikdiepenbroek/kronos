@@ -25,7 +25,10 @@ class AddProjectModal extends Component {
   };
 
   handleSave() {
-    this.props.firestore.add('projects', { uid: this.props.uid, name: this.state.projectName });
+    this.props.firestore.add('projects', {
+      uid: this.props.uid,
+      name: this.state.projectName
+    });
     this.props.hide('addProject');
   }
 
@@ -60,8 +63,7 @@ class AddProjectModal extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ hide }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ hide }, dispatch);
 
 export default compose(
   firestoreConnect(['projects']),

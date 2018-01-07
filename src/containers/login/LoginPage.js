@@ -13,16 +13,19 @@ export const LoginPage = ({ firebase, auth }) => (
     <GoogleButton
       onClick={() => firebase.login({ provider: 'google', type: 'popup' })}
       disabled={!isEmpty(auth)}
-    >
-    </GoogleButton>
+    />
     {isLoaded(auth) && !isEmpty(auth) ? (
       <div>
         <span>Logged in</span>
-        <p><Button bsStyle="danger" onClick={() => firebase.logout()}>Logout</Button></p>
+        <p>
+          <Button bsStyle="danger" onClick={() => firebase.logout()}>
+            Logout
+          </Button>
+        </p>
       </div>
     ) : (
-        <span>Please login</span>
-      )}
+      <span>Please login</span>
+    )}
   </div>
 );
 
