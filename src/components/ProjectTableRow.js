@@ -29,4 +29,4 @@ class ProjectTableRow extends Component {
     );
   }
 }
-export default firestoreConnect(['projects'])(ProjectTableRow);
+export default firestoreConnect()(ProjectTableRow);

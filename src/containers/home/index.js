@@ -7,6 +7,7 @@ import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class Home extends Component {
   constructor(props) {
@@ -25,7 +26,6 @@ class Home extends Component {
     const { events, uid } = this.props;
 
     BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
-
     return (
       <div>
         <h1>Home</h1>
@@ -64,4 +64,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ show }, dispatch);
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(Home);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect((props, store) => [
+    {
+      collection: 'events',
+      where: ['uid', '==', props.uid || '']
+    }
+  ])
+)(Home);
