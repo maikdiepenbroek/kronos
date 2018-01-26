@@ -66,7 +66,7 @@ class AddProjectModal extends Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ hide }, dispatch);
 
 export default compose(
-  firestoreConnect(['projects']),
+  firestoreConnect(),
   connectModal({ name: 'addProject' }),
   connect(() => ({}), mapDispatchToProps)
 )(AddProjectModal);

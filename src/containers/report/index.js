@@ -131,6 +131,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 export default compose(
-  firestoreConnect(['projects']),
+  firestoreConnect(),
   connect(mapStateToProps, mapDispatchToProps)
 )(Report);
