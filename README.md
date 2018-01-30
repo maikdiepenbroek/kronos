@@ -5,7 +5,7 @@ Timesheet app
 - React
 - Firestore / Firebase
 - React redux
-- 
+
 ### Commands
 `npm start`
 
